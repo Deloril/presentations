@@ -119,6 +119,18 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 
 ---
 
+# The Detection
+
+![bg right w:600](initial-alert.png) 
+
+- Detection fired for anomalous activity for the svc_filesvc account from FILE3​
+- Consistent short-lived network connections to 9.9.9.9.​
+- WinRM and SMB connections to DC1​
+- All activity came from the process associated with image C:\Windows\Temp\WDUpdate.exe​
+- WDUpdate.exe is a child process of services.exe​
+
+---
+
 # Comparison heading
 
 | Pros | Cons |
