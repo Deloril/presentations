@@ -1,0 +1,220 @@
+/* @theme lpearson-terminal
+ * Terminal/CLI deck theme for Marp. Ported from lpearson.co.
+ * Palette + type from the QU-Talk deck: near-black, cyan/azure, mono.
+ */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg:    #141414;
+  --bg-2:  #1a1a1a;
+  --panel: #1b1b1d;
+  --ink:   #f2f2f2;
+  --dim:   #aaaaaa;
+  --mute:  #6e6e72;
+  --cyan:  #29b6f6;
+  --azure: #00b0f0;
+  --line:  #2c2c2f;
+  --line-soft: #262629;
+  --ok:    #57d38c;
+  --mono:  "JetBrains Mono", "Courier New", ui-monospace, monospace;
+  --sans:  "Inter", -apple-system, "Segoe UI", Arial, sans-serif;
+}
+
+/* ---------- slide canvas ---------- */
+section {
+  font-family: var(--sans);
+  font-size: 26px;
+  line-height: 1.55;
+  color: var(--ink);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(41,182,246,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(41,182,246,0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  padding: 40px 84px 72px;
+}
+
+/* brand mark, footer bottom-left of every slide */
+section::before {
+  content: ">_ lukepearson";
+  position: absolute;
+  left: 40px; bottom: 24px;
+  padding: 0;
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--cyan);
+}
+
+/* page number (Marp injects the value when paginate: true).
+ * padding:0 overrides Marp's `padding: inherit`, which otherwise pushes the
+ * number in by the section's 84/72 padding and knocks it out of line with the
+ * footer. Same bottom + mirrored inset keeps the two ends of the footer level. */
+section::after {
+  padding: 0;
+  right: 40px; bottom: 24px;
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--mute);
+}
+
+/* ---------- headings ---------- */
+h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.06; margin: 0 0 18px; }
+h2 { font-size: 38px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 16px; }
+h3 { font-size: 26px; font-weight: 600; color: var(--dim); margin: 0 0 12px; }
+h1 strong, h2 strong, h3 strong { color: var(--cyan); font-weight: inherit; }
+
+/* accent rule under a top-level heading */
+h1::after {
+  content: "";
+  display: block;
+  width: 72px; height: 3px;
+  margin-top: 22px;
+  background: linear-gradient(90deg, var(--cyan), var(--azure));
+}
+
+/* ---------- body ---------- */
+p { margin: 0 0 16px; color: var(--ink); }
+strong { color: var(--cyan); }
+em { color: var(--dim); font-style: normal; }
+a { color: var(--cyan); text-decoration: none; }
+
+ul, ol { padding-left: 0; margin: 12px 0; }
+li { margin: 12px 0; list-style: none; position: relative; padding-left: 42px; }
+ul > li::before { content: ">_"; position: absolute; left: 0; color: var(--cyan); font-family: var(--mono); font-weight: 700; letter-spacing: -1px; }
+ol { counter-reset: li; }
+ol > li::before { counter-increment: li; content: counter(li, decimal-leading-zero); position: absolute; left: 0; color: var(--cyan); font-family: var(--mono); font-size: 0.8em; top: 0.15em; }
+li strong { color: var(--ink); }
+li ul { margin: 8px 0 0; }
+li ul > li { color: var(--dim); font-size: 0.92em; }
+
+/* ---------- code / terminal blocks ---------- */
+code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: rgba(41,182,246,0.12);
+  color: var(--cyan);
+  padding: 2px 7px;
+  border-radius: 5px;
+}
+pre {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 46px 26px 24px;
+  margin: 18px 0;
+  font-size: 21px;
+  line-height: 1.5;
+  box-shadow: 0 22px 55px rgba(0,0,0,0.5);
+}
+/* traffic-light dots, like a terminal window */
+pre::before {
+  content: "";
+  position: absolute; top: 17px; left: 20px;
+  width: 11px; height: 11px; border-radius: 50%;
+  background: #ff5f56;
+  box-shadow: 19px 0 #ffbd2e, 38px 0 #27c93f;
+}
+pre code { background: none; color: var(--ink); padding: 0; font-size: 1em; }
+
+/* terminal session: ```console blocks tell a prompt from its response.
+ * Write prompt lines starting with "$ " (highlight.js wraps the prompt and the
+ * command); every other line reads as dimmed output. The !important is needed to
+ * override marp-core's built-in highlight.js colour theme.
+ *   ```console
+ *   $ cat definition_of_incident.salesforce
+ *   An event that compromises the CIA of a system ...
+ *   ``` */
+pre code.language-console { color: var(--ink); }                 /* response / output */
+pre code.language-console .hljs-meta,                            /* the $ prompt, and ... */
+pre code.language-console .language-bash,                        /* ... the typed command */
+pre code.language-console .language-bash * { color: var(--cyan) !important; }
+/* shell comments (# ...) render green + bold, matching the green window dot.
+ * Extra-specific so it beats the cyan rule above. Write comments with #, either
+ * trailing a command (`> ls  # note`) or on their own prompt (`> # note`). */
+pre code.language-console .language-bash .hljs-comment { color: #27c93f !important; font-weight: 700; }
+
+/* ---------- quotes ---------- */
+blockquote {
+  border-left: 3px solid var(--cyan);
+  margin: 10px 0;
+  padding: 6px 0 6px 28px;
+  font-size: 34px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+blockquote strong, blockquote em { color: var(--cyan); }
+
+/* ---------- tables ---------- */
+table { border-collapse: collapse; font-size: 22px; margin: 14px 0; }
+th, td { border: 1px solid var(--line); padding: 12px 18px; text-align: left; }
+th { font-family: var(--mono); color: var(--cyan); font-weight: 600; background: rgba(255,255,255,0.02); }
+
+/* ---------- LEAD (title) slide: <!-- _class: lead --> ---------- */
+section.lead { display: flex; flex-direction: column; justify-content: center; }
+section.lead h1 { font-size: 37px; }
+section.lead h2 { color: var(--dim); font-weight: 600; font-size: 30px; }
+section.lead h1::after { width: 96px; }
+/* an eyebrow: write a blockquote line above the title on a lead slide */
+section.lead blockquote { border: 0; padding: 0; margin: 0 0 22px; font-family: var(--mono); font-size: 20px; color: var(--cyan); }
+
+/* ---------- SECTION divider: <!-- _class: section --> ---------- */
+section.section { display: flex; flex-direction: column; justify-content: center; background-color: var(--bg-2); }
+section.section h2 { font-family: var(--mono); font-size: 24px; color: var(--cyan); letter-spacing: 0.02em; }
+section.section h1 { font-size: 33px; }
+
+/* ---------- END slide: <!-- _class: end --> ---------- */
+section.end { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+section.end h1 { font-size: 35px; }
+section.end p { font-family: var(--mono); color: var(--dim); font-size: 22px; }
+
+/* dim, denser body when a slide needs more room: <!-- _class: dense --> */
+section.dense { font-size: 22px; }
+section.dense h2 { font-size: 32px; }
+
+/* two images side by side: <!-- _class: two-up -->
+ * put both images on one line with a space between:
+ *   ![w:480](before.png) ![w:480](after.png)
+ * they centre, share an even gap, and pick up a subtle frame. */
+section.two-up p { display: flex; gap: 40px; justify-content: center; align-items: center; }
+section.two-up img { max-width: 48%; max-height: 500px; height: auto; border: 1px solid var(--line); border-radius: 8px; }
+
+/* image caption: put an *emphasised* line directly under an image, with no
+ * blank line between them, and it renders as a centred mono caption beneath it.
+ *   ![w:600](diagram.png)
+ *   *Figure 1: the DAIR model* */
+p:has(> img) { text-align: center; }
+p:has(> img) em {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--mono);
+  font-size: 0.6em;
+  letter-spacing: 0.03em;
+  color: var(--dim);
+}
+
+/* 50/50 split: text one side, full-height image the other.
+ *   <!-- _class: split -->
+ *   # Heading
+ *   Your text on this side.
+ *   ![bg right](image.png)     <- image fills the right half (use `bg left` to flip)
+ * The image half is the split background; the text column centres vertically.
+ * Change the ratio with `![bg right:40%](image.png)`. The attribute selector
+ * catches every split slide automatically, so the class is optional. */
+section.split,
+section[data-marpit-advanced-background="content"][data-marpit-advanced-background-split] {
+  display: flex; flex-direction: column; justify-content: flex-start;
+}
+/* keep the heading top-left, then centre the body in the space beneath it:
+ * the element right after the heading soaks up the free space above, the last
+ * element soaks up the space below, so the middle block sits centred. */
+section.split > h1 + *,
+section[data-marpit-advanced-background="content"][data-marpit-advanced-background-split] > h1 + * {
+  margin-top: auto;
+}
+section.split > :last-child,
+section[data-marpit-advanced-background="content"][data-marpit-advanced-background-split] > :last-child {
+  margin-bottom: auto;
+}
