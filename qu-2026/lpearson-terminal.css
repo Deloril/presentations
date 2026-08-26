@@ -32,6 +32,10 @@ section {
     linear-gradient(90deg, rgba(41,182,246,0.045) 1px, transparent 1px);
   background-size: 44px 44px;
   padding: 40px 84px 72px;
+  /* every slide centres its content vertically; a heading pins to the top (below) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* brand mark, footer bottom-left of every slide */
@@ -79,6 +83,13 @@ p { margin: 0 0 16px; color: var(--ink); }
 strong { color: var(--cyan); }
 em { color: var(--dim); font-style: normal; }
 a { color: var(--cyan); text-decoration: none; }
+
+/* rounded corners on every image: inline images and the split/full-bleed
+ * background images (Marpit paints those as a <figure> background, not an <img>).
+ * The figure rule needs !important because Marpit's own background-figure rule
+ * ends in `all:initial`, which resets border-radius and comes later in the cascade. */
+img { border-radius: 8px; }
+section[data-marpit-advanced-background="background"] figure { border-radius: 8px !important; }
 
 ul, ol { padding-left: 0; margin: 12px 0; }
 li { margin: 12px 0; list-style: none; position: relative; padding-left: 42px; }
@@ -195,26 +206,22 @@ p:has(> img) em {
   color: var(--dim);
 }
 
-/* 50/50 split: text one side, full-height image the other.
+/* Heading-bearing slides keep the heading pinned top-left and centre only the
+ * body beneath it: the element right after the heading soaks up the free space
+ * above, the last element the space below, so the middle block sits centred.
+ * Headingless slides just centre the whole block (base rule above). Lead, section
+ * and end centre the heading with the body, so they opt out of the pin. This also
+ * covers split slides (`![bg right]` etc), whose content column carries a heading.
  *   <!-- _class: split -->
  *   # Heading
- *   Your text on this side.
- *   ![bg right](image.png)     <- image fills the right half (use `bg left` to flip)
- * The image half is the split background; the text column centres vertically.
- * Change the ratio with `![bg right:40%](image.png)`. The attribute selector
- * catches every split slide automatically, so the class is optional. */
-section.split,
-section[data-marpit-advanced-background="content"][data-marpit-advanced-background-split] {
-  display: flex; flex-direction: column; justify-content: flex-start;
+ *   Body text on this side.
+ *   ![bg right](image.png)     <- image fills the right half (use `bg left` to flip) */
+section:has(> h1):not(.lead):not(.section):not(.end) {
+  justify-content: flex-start;
 }
-/* keep the heading top-left, then centre the body in the space beneath it:
- * the element right after the heading soaks up the free space above, the last
- * element soaks up the space below, so the middle block sits centred. */
-section.split > h1 + *,
-section[data-marpit-advanced-background="content"][data-marpit-advanced-background-split] > h1 + * {
+section:has(> h1):not(.lead):not(.section):not(.end) > h1 + * {
   margin-top: auto;
 }
-section.split > :last-child,
-section[data-marpit-advanced-background="content"][data-marpit-advanced-background-split] > :last-child {
+section:has(> h1):not(.lead):not(.section):not(.end) > :last-child {
   margin-bottom: auto;
 }
