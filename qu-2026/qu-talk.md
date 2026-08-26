@@ -131,24 +131,31 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 
 ---
 
-# Comparison heading
+# Where are we?
 
-| Pros | Cons |
-|------|------|
-| Advantage one | Trade-off one |
-| Advantage two | Trade-off two |
-| Advantage three | Trade-off three |
-| Advantage four | Trade-off four |
+![bg right w:600](scope-1.png)
+
+- I don't believe FILE-3 is the first compromised system, there's more to find on the left.
+- Depending on how long ago this activity occurred, I don't believe that we've seen the end of the activity on the right.
+- What else happened on FILE-3?!
 
 ---
 
-# Flow / diagram heading
+# Timeline: Left
 
-```text
-  Component A  -->  Component B  -->  Component C
-```
+---
 
-Caption describing what the diagram shows, in one line.
+# Timeline: Right
+
+---
+
+# Business Notification
+
+
+
+---
+
+# Reality Check
 
 ---
 
