@@ -257,7 +257,7 @@ section.timeline h4 {
 }
 section.timeline > h4:first-of-type { margin-top: 0; }
 section.timeline ul { margin: 0; break-inside: avoid; }
-section.timeline li { margin: 3px 0; padding-left: 0; font-size: 16px; line-height: 1.4; color: var(--ink); }
+section.timeline li { margin: 3px 0; padding-left: 16px; font-size: 16px; line-height: 1.4; color: var(--ink); }
 section.timeline li::before { content: none; }
 section.timeline li code { background: none; color: var(--cyan); padding: 0; margin-right: 8px; font-size: 0.95em; }
 section.timeline li strong { color: var(--cyan); }
