@@ -227,12 +227,18 @@ section img[alt~="outline"] {
  *   ![outline w:440](diagram.png)
  *   # Heading
  *   - your points
- * The image floats to its side and the text wraps alongside it. */
-section.img-right, section.img-left { display: block; }   /* block flow so the image can float */
-section.img-right > p:has(> img) { float: right; margin: 6px 0 18px 48px; }
-section.img-left  > p:has(> img) { float: left;  margin: 6px 48px 18px 0; }
-/* the floated image sizes to its own width, so its caption/outline hug it */
-section.img-right > p:has(> img), section.img-left > p:has(> img) { width: auto; }
+ * A two-column grid: text stacks in one column, the image sits in the other and
+ * the whole thing centres vertically (align-content). */
+section.img-right, section.img-left { display: grid; column-gap: 48px; align-content: center; }
+section.img-right { grid-template-columns: 1fr auto; }
+section.img-left  { grid-template-columns: auto 1fr; }
+/* text stacks in the text column */
+section.img-right > * { grid-column: 1; }
+section.img-left  > * { grid-column: 2; }
+/* the image takes the other column, spanning every text row so it centres beside
+ * the text (span 99 covers any row count; empty rows are zero-height) */
+section.img-right > p:has(> img) { grid-column: 2; grid-row: 1 / span 99; align-self: center; margin: 0; }
+section.img-left  > p:has(> img) { grid-column: 1; grid-row: 1 / span 99; align-self: center; margin: 0; }
 
 /* Heading-bearing slides keep the heading pinned top-left and centre only the
  * body beneath it: the element right after the heading soaks up the free space
@@ -244,12 +250,12 @@ section.img-right > p:has(> img), section.img-left > p:has(> img) { width: auto;
  *   # Heading
  *   Body text on this side.
  *   ![bg right](image.png)     <- image fills the right half (use `bg left` to flip) */
-section:has(> h1):not(.lead):not(.section):not(.end) {
+section:has(> h1):not(.lead):not(.section):not(.end):not(.img-right):not(.img-left) {
   justify-content: flex-start;
 }
-section:has(> h1):not(.lead):not(.section):not(.end) > h1 + * {
+section:has(> h1):not(.lead):not(.section):not(.end):not(.img-right):not(.img-left) > h1 + * {
   margin-top: auto;
 }
-section:has(> h1):not(.lead):not(.section):not(.end) > :last-child {
+section:has(> h1):not(.lead):not(.section):not(.end):not(.img-right):not(.img-left) > :last-child {
   margin-bottom: auto;
 }
