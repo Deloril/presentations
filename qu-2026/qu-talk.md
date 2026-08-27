@@ -133,7 +133,7 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 
 ![bg right w:600](initial-alert.png) 
 
-- Detection fired for anomalous activity for the svc_filesvc account from FILE3​
+- Detection fired for anomalous activity for the svc_filesvc account from FILE-3​
 - Consistent short-lived network connections to 9.9.9.9.​
 - WinRM and SMB connections to DC1​
 - All activity came from the process associated with image C:\Windows\Temp\WDUpdate.exe​
@@ -199,38 +199,38 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 - `12:40:44` Persistence on wks-lpearson
 - `12:47:33` Credential discovery
 - `12:53:19` Invoke-Kerberoast
-- `19:22:22` Lateral move to FILE3 (svc_filesvc)
-- `19:23:22` Sliver persistence on FILE3
-- `19:38:16` Sleeper planted on PRINT1 (6.6.6.6)
-- `19:39:22` Sliver beacon from FILE3
+- `19:22:22` Lateral move to FILE-3 (svc_filesvc)
+- `19:23:22` Sliver persistence on FILE-3
+- `19:38:16` Sleeper planted on PRINT-1 (6.6.6.6)
+- `19:39:22` Sliver beacon from FILE-3
 
 #### Day 2
 
-- `06:17:23` LDAP recon from FILE3
-- `06:28:45` Target picked: CTX13
-- `06:38:54` Port scan of CTX13
-- `06:45:12` Failed move to CTX13
-- `07:02:33` WinRM to DC01 (svc_filesvc)
+- `06:17:23` LDAP recon from FILE-3
+- `06:28:45` Target picked: CTX-13
+- `06:38:54` Port scan of CTX-13
+- `06:45:12` Failed move to CTX-13
+- `07:02:33` WinRM to DC-1 (svc_filesvc)
 - `07:15:48` Malicious GPO: scheduled task
 - `07:23:41` GPO fires, Sliver via Proxy Bravo 2.2.2.2
-- `07:31:18` Host recon on CTX13
+- `07:31:18` Host recon on CTX-13
 
 #### Day 3
 
 - `09:15:22` Citrix tool via certutil (3.3.3.3)
-- `09:28:47` CitrixBleed exploited from CTX13
+- `09:28:47` CitrixBleed exploited from CTX-13
 - `09:35:17` Published-desktop breakout
 - `09:41:33` VAULT01 via hijacked session
-- `13:52:08` Data staged on CTX13
+- `13:52:08` Data staged on CTX-13
 - `14:30:00` Exfil over C2 (Proxy Bravo)
 
 #### Day 4
 
-- `02:17:44` Three Meridian files tampered on VAULT01
+- `02:17:44` Three Meridian files tampered on VAULT-3
 
 #### Day 34
 
-- `03:05:05` PRINT1 restart (planned maintenance)
+- `03:05:05` PRINT-1 restart (planned maintenance)
 - `03:12:20` Sleeper wakes via Proxy Charlie
 
 ---
