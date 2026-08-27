@@ -92,7 +92,7 @@ img { border-radius: 8px; }
 section[data-marpit-advanced-background="background"] figure { border-radius: 8px !important; }
 
 ul, ol { padding-left: 0; margin: 12px 0; }
-li { margin: 12px 0; list-style: none; position: relative; padding-left: 42px; }
+li { margin: 6px 0; list-style: none; position: relative; padding-left: 42px; }
 ul > li::before { content: ">_"; position: absolute; left: 0; color: var(--cyan); font-family: var(--mono); font-weight: 700; letter-spacing: -1px; }
 ol { counter-reset: li; }
 ol > li::before { counter-increment: li; content: counter(li, decimal-leading-zero); position: absolute; left: 0; color: var(--cyan); font-family: var(--mono); font-size: 0.8em; top: 0.15em; }
