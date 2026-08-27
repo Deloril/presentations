@@ -206,6 +206,17 @@ p:has(> img) em {
   color: var(--dim);
 }
 
+/* optional dashed outline: add the word `outline` to an inline image's alt text
+ * and it picks up a cyan dashed frame (the dash follows the rounded corners).
+ * Sizing keywords still work in any order:  ![outline w:500](diagram.png)
+ * The scoped selector matches the two-up border rule's weight and comes later,
+ * so it also outlines a two-up image when asked. Background images (`![bg ...]`)
+ * can't take it: they are painted as a CSS background, not an <img>. */
+section img[alt~="outline"] {
+  border: 2px dashed var(--cyan);
+  padding: 6px;
+}
+
 /* Heading-bearing slides keep the heading pinned top-left and centre only the
  * body beneath it: the element right after the heading soaks up the free space
  * above, the last element the space below, so the middle block sits centred.
