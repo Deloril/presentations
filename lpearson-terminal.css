@@ -96,7 +96,6 @@ li { margin: 6px 0; list-style: none; position: relative; padding-left: 42px; }
 ul > li::before { content: ">_"; position: absolute; left: 0; color: var(--cyan); font-family: var(--mono); font-weight: 700; letter-spacing: -1px; }
 ol { counter-reset: li; }
 ol > li::before { counter-increment: li; content: counter(li, decimal-leading-zero); position: absolute; left: 0; color: var(--cyan); font-family: var(--mono); font-size: 0.8em; top: 0.15em; }
-li strong { color: var(--ink); }
 li ul { margin: 8px 0 0; }
 /* sub-bullets: plain > marker, and less left padding so the text sits close
  * to it (the 42px above is sized for the wider >_ of top-level bullets) */
@@ -260,7 +259,6 @@ section.timeline ul { margin: 0; break-inside: avoid; }
 section.timeline li { margin: 3px 0; padding-left: 16px; font-size: 16px; line-height: 1.4; color: var(--ink); }
 section.timeline li::before { content: none; }
 section.timeline li code { background: none; color: var(--cyan); padding: 0; margin-right: 8px; font-size: 0.95em; }
-section.timeline li strong { color: var(--cyan); }
 
 /* Heading-bearing slides keep the heading pinned top-left and centre only the
  * body beneath it: the element right after the heading soaks up the free space
