@@ -240,6 +240,28 @@ section.img-left  > * { grid-column: 2; }
 section.img-right > p:has(> img) { grid-column: 2; grid-row: 1 / span 99; align-self: center; margin: 0; }
 section.img-left  > p:has(> img) { grid-column: 1; grid-row: 1 / span 99; align-self: center; margin: 0; }
 
+/* dense two-column event timeline: <!-- _class: timeline -->
+ *   # Attack Timeline
+ *   #### Day 1
+ *   - `12:24:18` what happened
+ * The heading spans the full width; the day sections flow down the left column
+ * then the right. Timestamps go in backticks and render as plain cyan mono, no
+ * marker bullet, so each line reads as time + event. A day block never splits
+ * across the column break. */
+section.timeline { display: block; column-count: 2; column-gap: 54px; }
+section.timeline > h1 { column-span: all; }
+section.timeline h4 {
+  font-family: var(--mono); font-size: 15px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--cyan);
+  margin: 12px 0 5px; break-after: avoid;
+}
+section.timeline > h4:first-of-type { margin-top: 0; }
+section.timeline ul { margin: 0; break-inside: avoid; }
+section.timeline li { margin: 3px 0; padding-left: 0; font-size: 16px; line-height: 1.4; color: var(--ink); }
+section.timeline li::before { content: none; }
+section.timeline li code { background: none; color: var(--cyan); padding: 0; margin-right: 8px; font-size: 0.95em; }
+section.timeline li strong { color: var(--cyan); }
+
 /* Heading-bearing slides keep the heading pinned top-left and centre only the
  * body beneath it: the element right after the heading soaks up the free space
  * above, the last element the space below, so the middle block sits centred.
@@ -250,12 +272,12 @@ section.img-left  > p:has(> img) { grid-column: 1; grid-row: 1 / span 99; align-
  *   # Heading
  *   Body text on this side.
  *   ![bg right](image.png)     <- image fills the right half (use `bg left` to flip) */
-section:has(> h1):not(.lead):not(.section):not(.end):not(.img-right):not(.img-left) {
+section:has(> h1):not(.lead):not(.section):not(.end):not(.img-right):not(.img-left):not(.timeline) {
   justify-content: flex-start;
 }
-section:has(> h1):not(.lead):not(.section):not(.end):not(.img-right):not(.img-left) > h1 + * {
+section:has(> h1):not(.lead):not(.section):not(.end):not(.img-right):not(.img-left):not(.timeline) > h1 + * {
   margin-top: auto;
 }
-section:has(> h1):not(.lead):not(.section):not(.end):not(.img-right):not(.img-left) > :last-child {
+section:has(> h1):not(.lead):not(.section):not(.end):not(.img-right):not(.img-left):not(.timeline) > :last-child {
   margin-bottom: auto;
 }

@@ -84,7 +84,7 @@ For example, two different systems being compromised by the same phishing campai
 would not meet this criteria, but the compromise of one system leading to lateral
 movement to a second system would.
 
-># OH! It's the FUN stuff!
+> # OH! It's the FUN stuff!
 
 ```
 
@@ -104,14 +104,24 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 
 ---
 
+# Mandiant Targeted Attack Lifecycle
+
+![bg w:1000](mandiant_attack_lifecycle_dark.jpeg)
+
+---
 <!-- _class: two-up -->
+
+# Incident Response Lifecycles
+
 ![w:600](NIST_IR_Dark.jpeg) ![w:600](SANS_PICERL_Dark.jpeg)
 
 ---
 
+<!-- _class: img-right -->
+
 # The Bleeding-Edge
 
-![bg right w:650](DAIR_Dark.jpeg) 
+![outline w:650](DAIR_Dark.jpeg) 
 
 - Dynamic Approach to Incident Response (DAIR)
 - Brings the SOC to the table
@@ -130,26 +140,101 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 - WDUpdate.exe is a child process of services.exe​
 
 ---
+<!-- _class: img-right -->
 
 # Where are we?
 
-![bg right w:600](scope-1.png)
+![outline w:600](scope-1.png)
 
 - I don't believe FILE-3 is the first compromised system, there's more to find on the left.
 - Depending on how long ago this activity occurred, I don't believe that we've seen the end of the activity on the right.
 - What else happened on FILE-3?!
 
 ---
+<!-- _class: img-right -->
 
 # Timeline: Left
 
+
+![outline right w:600](tl-left-dark.png)
+
+- Search for other systems connecting to 9.9.9.9
+    - Find LPEARSON
+- Investigate LPEARSON: 
+    - Phished from mike@myodb.com
+    - Bunch of internal recon
+    - Invoke-Kerberoast
+- Search for bad use of kerb creds
+- Find PRINT-1:
+    - Service and malicious binary created, no execution?
+    - No other findings
+
 ---
+<!-- _class: img-right -->
 
 # Timeline: Right
 
+![outline right w:600](tl-right-dark.png)
+
+
+- Investigate DC-1:
+    - Group policy created targeting CTX-13 that runs a command
+- Investigate CTX-13:
+    - Command downloads and runs ctxhealth.exe from 2.2.2.2
+    - ctxhealth.exe is a C2 implant that talks to 3.3.3.3
+    - ctxhealth exploits a citrix gateway to steal credentials
+    - MWILLIAMS credentials used to access and change contract data for Meridian, Inc
+
 ---
 
-# Business Notification
+<!-- _class: timeline -->
+
+# Attack Timeline
+
+#### Day 1
+
+- `12:24:18` Phishing binary delivered (mchen &rarr; lpearson)
+- `12:30:31` Runs myodb_client_hotfix.exe (Sliver implant)
+- `12:33:37` C2 out to Proxy Alpha 9.9.9.9
+- `12:40:44` Persistence on wks-lpearson
+- `12:47:33` Credential discovery
+- `12:53:19` Invoke-Kerberoast
+- `19:22:22` Lateral move to FILE3 (svc_filesvc)
+- `19:23:22` Sliver persistence on FILE3
+- `19:38:16` Sleeper planted on PRINT1 (6.6.6.6)
+- `19:39:22` Sliver beacon from FILE3
+
+#### Day 2
+
+- `06:17:23` LDAP recon from FILE3
+- `06:28:45` Target picked: CTX13
+- `06:38:54` Port scan of CTX13
+- `06:45:12` Failed move to CTX13
+- `07:02:33` WinRM to DC01 (svc_filesvc)
+- `07:15:48` Malicious GPO: scheduled task
+- `07:23:41` GPO fires, Sliver via Proxy Bravo 2.2.2.2
+- `07:31:18` Host recon on CTX13
+
+#### Day 3
+
+- `09:15:22` Citrix tool via certutil (3.3.3.3)
+- `09:28:47` CitrixBleed exploited from CTX13
+- `09:35:17` Published-desktop breakout
+- `09:41:33` VAULT01 via hijacked session
+- `13:52:08` Data staged on CTX13
+- `14:30:00` Exfil over C2 (Proxy Bravo)
+
+#### Day 4
+
+- `02:17:44` Three Meridian files tampered on VAULT01
+
+#### Day 34
+
+- `03:05:05` PRINT1 restart (planned maintenance)
+- `03:12:20` Sleeper wakes via Proxy Charlie
+
+---
+# Informing the Business
 
 
 
@@ -166,4 +251,13 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 
 Questions?
 
-`hello@lpearson.co` · `lpearson.co` · `linkedin.com/in/luke-pearson-infosec`
+`hello@lpearson.co` · `lpearson.co` · `thisinsecureworld.com`
+
+---
+
+# Kerberoasting!
+
+
+
+
+---
