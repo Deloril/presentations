@@ -100,20 +100,20 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 
 ---
 
-![bg fit](TSG_AMER_Network_Dark.jpeg)
+![bg fit](images/TSG_AMER_Network_Dark.jpeg)
 
 ---
 
 # Mandiant Targeted Attack Lifecycle
 
-![bg w:1000](mandiant_attack_lifecycle_dark.jpeg)
+![bg w:1000](images/mandiant_attack_lifecycle_dark.jpeg)
 
 ---
 <!-- _class: two-up -->
 
 # Incident Response Lifecycles
 
-![w:600](NIST_IR_Dark.jpeg) ![w:600](SANS_PICERL_Dark.jpeg)
+![w:600](images/NIST_IR_Dark.jpeg) ![w:600](images/SANS_PICERL_Dark.jpeg)
 
 ---
 
@@ -121,7 +121,7 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 
 # The Bleeding-Edge
 
-![outline w:650](DAIR_Dark.jpeg) 
+![outline w:650](images/DAIR_Dark.jpeg) 
 
 - Dynamic Approach to Incident Response (DAIR)
 - Brings the SOC to the table
@@ -131,7 +131,7 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 
 # The Detection
 
-![bg right w:600](initial-alert.png) 
+![bg right w:600](images/initial-alert.png) 
 
 - Detection fired for anomalous activity for the svc_filesvc account from FILE-3​
 - Consistent short-lived network connections to 9.9.9.9.​
@@ -144,7 +144,7 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 
 # Where are we?
 
-![outline w:600](scope-1.png)
+![outline w:600](images/scope-1.png)
 
 - I don't believe FILE-3 is the first compromised system, there's more to find on the left.
 - Depending on how long ago this activity occurred, I don't believe that we've seen the end of the activity on the right.
@@ -156,7 +156,7 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 # Timeline: Left
 
 
-![outline right w:600](tl-left-dark.png)
+![outline right w:600](images/tl-left-dark.png)
 
 - Search for other systems connecting to 9.9.9.9
     - Find LPEARSON
@@ -174,7 +174,7 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 
 # Timeline: Right
 
-![outline right w:600](tl-right-dark.png)
+![outline right w:600](images/tl-right-dark.png)
 
 
 - Investigate DC-1:
