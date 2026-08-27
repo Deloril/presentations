@@ -249,14 +249,24 @@ section.img-left  > p:has(> img) { grid-column: 1; grid-row: 1 / span 99; align-
  * across the column break. */
 section.timeline { display: block; column-count: 2; column-gap: 54px; }
 section.timeline > h1 { column-span: all; }
+/* each day is a dashed cyan box: the h4 is the box's top (rounded top corners,
+ * no bottom border) and the ul is the box's body (no top border, rounded
+ * bottom), so header and entries join into one outlined card per day. The
+ * dashed border matches the `outline` image treatment. */
 section.timeline h4 {
-  font-family: var(--mono); font-size: 15px; font-weight: 700;
+  font-family: var(--mono); font-size: 14px; font-weight: 700;
   letter-spacing: 0.06em; text-transform: uppercase; color: var(--cyan);
-  margin: 12px 0 5px; break-after: avoid;
+  margin: 10px 0 0; break-after: avoid;
+  border: 2px dashed var(--cyan); border-bottom: none;
+  border-radius: 8px 8px 0 0; padding: 5px 12px 3px;
 }
 section.timeline > h4:first-of-type { margin-top: 0; }
-section.timeline ul { margin: 0; break-inside: avoid; }
-section.timeline li { margin: 3px 0; padding-left: 16px; font-size: 16px; line-height: 1.4; color: var(--ink); }
+section.timeline ul {
+  margin: 0 0 10px; break-inside: avoid;
+  border: 2px dashed var(--cyan); border-top: none;
+  border-radius: 0 0 8px 8px; padding: 3px 12px 6px;
+}
+section.timeline li { margin: 1px 0; padding-left: 6px; font-size: 15px; line-height: 1.35; color: var(--ink); }
 section.timeline li::before { content: none; }
 section.timeline li code { background: none; color: var(--cyan); padding: 0; margin-right: 8px; font-size: 0.95em; }
 
