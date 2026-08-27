@@ -234,6 +234,7 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 - `03:12:20` Sleeper wakes via Proxy Charlie
 
 ---
+
 # Informing the Business
 
 
@@ -247,9 +248,12 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 <!-- _class: end -->
 <!-- _paginate: false -->
 
-# Thank you.
 
-Questions?
+Thank you.
+
+Further Reading: https://dynamicincidentresponse.com/
+
+# Questions?
 
 `hello@lpearson.co` · `lpearson.co` · `thisinsecureworld.com`
 
