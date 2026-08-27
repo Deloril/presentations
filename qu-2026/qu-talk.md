@@ -235,19 +235,44 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 
 ---
 
+# Documenting the Investigation
+
+![w:1100](images/ioc-tracker.png)
+
+Crowdstrike Incident Response Tracker: https://www.crowdstrike.com/en-us/blog/crowdstrike-releases-digital-forensics-and-incident-response-tracker/
+
+---
+
+# Alternate Entry Points
+
+- Phishing email being sent to lpearson
+- Use of Sliver, either time
+- Invoke-Kerberoast
+- Service accounts for lateral movement
+- Group Policy Object creation by service account
+- CTX workstations communicating with internet resources
+- Meridian reach out and say their data has been changed
+
+---
+<!-- _class: img-right -->
+
 # Informing the Business
 
+![outline w:600](images/frustrated-stakeholders.png)
 
+- Security Leadership
+- Business Leadership
+- The Board
+- Legal
+    - Regulators
+    - Litigation
+    - Customer Notification
+- Public Relations
+- Law Enforcement
 
 ---
-
-# Reality Check
-
----
-
 <!-- _class: end -->
 <!-- _paginate: false -->
-
 
 Thank you.
 
@@ -258,10 +283,16 @@ Further Reading: https://dynamicincidentresponse.com/
 `hello@lpearson.co` · `lpearson.co` · `thisinsecureworld.com`
 
 ---
+<!-- _class: two-up -->
 
-# Kerberoasting!
+![outline left w:700](images/kerberos-fair-analogy.png)
+![outline right w:800](images/kerberos-flow-diagram.png)
 
+---
 
+<!-- _class: two-up -->
 
+![alt text](images/kerberoast-fair-cracking.png)
+![outline left w:700](images/kerberoasting-attack-flow.png)
 
 ---
