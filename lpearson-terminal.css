@@ -217,6 +217,20 @@ section img[alt~="outline"] {
   padding: 6px;
 }
 
+/* text one side, an inline image the other: <!-- _class: img-right --> (or img-left).
+ * Unlike the bg `split`, the image is a real <img>, so `outline` works on it.
+ * Put the image line first, then the heading and body:
+ *   <!-- _class: img-right -->
+ *   ![outline w:440](diagram.png)
+ *   # Heading
+ *   - your points
+ * The image floats to its side and the text wraps alongside it. */
+section.img-right, section.img-left { display: block; }   /* block flow so the image can float */
+section.img-right > p:has(> img) { float: right; margin: 6px 0 18px 48px; }
+section.img-left  > p:has(> img) { float: left;  margin: 6px 48px 18px 0; }
+/* the floated image sizes to its own width, so its caption/outline hug it */
+section.img-right > p:has(> img), section.img-left > p:has(> img) { width: auto; }
+
 /* Heading-bearing slides keep the heading pinned top-left and centre only the
  * body beneath it: the element right after the heading soaks up the free space
  * above, the last element the space below, so the middle block sits centred.
