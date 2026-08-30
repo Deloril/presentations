@@ -48,7 +48,9 @@ Luke Pearson · lpearson.co · QU 2026
 3. An intrusion! Who could have seen this coming?!
 4. Doing the fun technical stuff
 5. Doing the ~~fun~~ business stuff
+6. AI in intrusion response - today and tomorrow.
 6. Wrapping up / QnA
+7. Bonus / Time Dependent: Kerberoasting
 
 ---
 
@@ -59,7 +61,7 @@ Luke Pearson · lpearson.co · QU 2026
 a violation or imminent threat of violation of computer security policies, 
 acceptable use policies, or standard security practices.
 
-> cat definition_of_incident.SALESFORCE
+> cat definition_of_incident.MICROSOFT
 a confirmed breach of security that leads to the accidental or unlawful destruction, 
 loss, alteration, unauthorized disclosure of, or access to customer data or personal 
 data while Microsoft processes it.
@@ -106,14 +108,14 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 
 # Mandiant Targeted Attack Lifecycle
 
-![bg w:1000](images/mandiant_attack_lifecycle_dark.jpeg)
+![outline w:1000](images/mandiant_attack_lifecycle_dark.jpeg)
 
 ---
 <!-- _class: two-up -->
 
 # Incident Response Lifecycles
 
-![w:600](images/NIST_IR_Dark.jpeg) ![w:600](images/SANS_PICERL_Dark.jpeg)
+![outline w:600](images/NIST_IR_Dark.jpeg) ![outline w:600](images/SANS_PICERL_Dark.jpeg)
 
 ---
 
@@ -128,10 +130,11 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 - Still doesn't mention Investigate, but Scope is closer
 
 ---
+<!-- _class: img-right -->
 
 # The Detection
 
-![bg right w:600](images/initial-alert.png) 
+![outline right w:600](images/initial-alert.png) 
 
 - Detection fired for anomalous activity for the svc_filesvc account from FILE-3​
 - Consistent short-lived network connections to 9.9.9.9.​
@@ -220,7 +223,7 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 - `09:15:22` Citrix tool via certutil (3.3.3.3)
 - `09:28:47` CitrixBleed exploited from CTX-13
 - `09:35:17` Published-desktop breakout
-- `09:41:33` VAULT01 via hijacked session
+- `09:41:33` VAULT-3 via hijacked session
 - `13:52:08` Data staged on CTX-13
 - `14:30:00` Exfil over C2 (Proxy Bravo)
 
@@ -237,7 +240,7 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 
 # Documenting the Investigation
 
-![w:1100](images/ioc-tracker.png)
+![outline w:1100](images/ioc-tracker.png)
 
 Crowdstrike Incident Response Tracker: https://www.crowdstrike.com/en-us/blog/crowdstrike-releases-digital-forensics-and-incident-response-tracker/
 
@@ -271,6 +274,24 @@ Crowdstrike Incident Response Tracker: https://www.crowdstrike.com/en-us/blog/cr
 - Law Enforcement
 
 ---
+
+## In Incident Response, AI is Excellent at
+
+  - Explaining a single artefact fast: decode an obfuscated PowerShell blob, tell you what a LOLBin or registry key does, draft the detection query.
+  - First-pass triage on one host: "here's what looks odd, here's what to pull next." A tireless junior analyst.
+  - Writing it up: turning scratch notes and a raw timeline into a clean report, exec summary or client update.
+
+---
+
+## But Terrible at
+  - Scoping the whole intrusion: holding 40 hosts in its head, correlating across them, and knowing it hasn't found the edge yet. It declares victory early.
+  - Catching the novel: it pattern-matches what's been seen before, so an advanced adversary doing something new is exactly what it misses.
+  - Being accountable: it hallucinates with confidence, can't testify, and can't own a call. Someone has to sign their name to "this is what happened."
+
+## Ultimately 
+- Leadership want **people** to hold accountable
+
+---
 <!-- _class: end -->
 <!-- _paginate: false -->
 
@@ -280,7 +301,7 @@ Further Reading: https://dynamicincidentresponse.com/
 
 # Questions?
 
-`hello@lpearson.co` · `lpearson.co` · `thisinsecureworld.com`
+`hello@lpearson.co` · `lpearson.co` · `thisinsecureworld.com/p/qu-2026-intrusion-response/`
 
 ---
 <!-- _class: two-up -->
