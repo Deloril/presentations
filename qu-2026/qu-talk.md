@@ -143,6 +143,13 @@ Founded in Wellington in 2012 as a boutique source-code escrow agent, The Secret
 - WDUpdate.exe is a child process of services.exe​
 
 ---
+
+# Alert in Context
+
+![outline w:1000](./images/alert-timeline.jpg)
+
+---
+
 <!-- _class: img-right -->
 
 # Where are we?
@@ -283,7 +290,12 @@ Crowdstrike Incident Response Tracker: https://www.crowdstrike.com/en-us/blog/cr
 
 ---
 
+<!-- _class: img-right -->
+
 ## But Terrible at
+
+![alt text](images/ai-novelty.png)
+
   - Scoping the whole intrusion: holding 40 hosts in its head, correlating across them, and knowing it hasn't found the edge yet. It declares victory early.
   - Catching the novel: it pattern-matches what's been seen before, so an advanced adversary doing something new is exactly what it misses.
   - Being accountable: it hallucinates with confidence, can't testify, and can't own a call. Someone has to sign their name to "this is what happened."
